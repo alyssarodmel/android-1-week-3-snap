@@ -1,6 +1,7 @@
 package com.ucsdextandroid1.snapapp.stories;
 
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,6 @@ public class StoriesFragment extends Fragment {
 
         //TODO create a adapter
         StoriesAdapter adapter = new StoriesAdapter();
-
         //TODO create a grid layout manager with default span of 2 and the SpanSizeLookup for each type
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -51,16 +51,15 @@ public class StoriesFragment extends Fragment {
                 return adapter.getSpanSize(position);
             }
         });
-
         //TODO set up the recyclerView with the layoutManager and adapter
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
         //TODO add a callback to the adapter that calls the method onStoryClicked when the user clicks on the list item
         adapter.setCallback(new StoryCardViewHolder.StoryCardClickListener() {
             @Override
             public void onStoryCardCLick(Story story) {
                 Toast.makeText(getContext(), story.getTitle(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -69,6 +68,7 @@ public class StoriesFragment extends Fragment {
             public void onDataFetched(List<Story> data) {
                 //TODO set the data from the DataSource to the adapter
                 adapter.setItems(getContext(), data);
+
             }
         });
 
